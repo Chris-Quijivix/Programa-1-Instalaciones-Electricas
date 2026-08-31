@@ -282,6 +282,7 @@ do
                 double limite;
                 int material;
                 int tipoCircuito;
+                int calibre;
 
                 Console.WriteLine("Material del conductor");
                 Console.WriteLine("1. ALUMINIO");
@@ -308,10 +309,45 @@ do
                 Console.Write("Ingrese la corriente: ");
                 corriente = double.Parse(Console.ReadLine());
 
-                Console.Write("Ingrese el area del conductor: ");
-                area = double.Parse(Console.ReadLine());
+                Console.WriteLine();
+                Console.WriteLine("CALIBRE DEL CONDUCTOR");
+                Console.WriteLine("1. #14 AWG");
+                Console.WriteLine("2. #12 AWG");
+                Console.WriteLine("3. #10 AWG");
+                Console.WriteLine("4. #8 AWG");
+                Console.WriteLine("5. #6 AWG");
+                Console.WriteLine();
 
-                caidaTension = (resistividad * longitud * corriente) / area;
+                Console.Write("Seleccione un calibre: ");
+                calibre = int.Parse(Console.ReadLine());
+                    switch (calibre)
+                    {
+                        case 1:
+                            area = 2.082;
+                            break;
+
+                        case 2:
+                            area = 3.307;
+                            break;
+
+                        case 3:
+                            area = 5.260;
+                            break;
+
+                        case 4:
+                            area = 8.367;
+                            break;
+
+                        case 5:
+                            area = 13.300;
+                            break;
+
+                        default:
+                            area = 0;
+                            break;
+                    }
+
+                    caidaTension = (resistividad * longitud * corriente) / area;
                 porcentaje = (caidaTension / voltaje) * 100;
                 Console.WriteLine();
                 Console.WriteLine("Tipo de circuito");
