@@ -283,6 +283,9 @@ do
                 int material;
                 int tipoCircuito;
                 int calibre;
+                string nombreCalibre;
+                int calibreRecomendar;
+                bool encontrarCalibre = false;
 
                 Console.WriteLine("Material del conductor");
                 Console.WriteLine("1. ALUMINIO");
@@ -323,31 +326,56 @@ do
                     switch (calibre)
                     {
                         case 1:
-                            area = 2.082;
-                            break;
-
+                            { 
+                                area = 2.082;
+                                nombreCalibre = "#14 AWG";
+                            }
+                        break;
+                            
                         case 2:
-                            area = 3.307;
-                            break;
+                            { 
+                                area = 3.307;
+                                nombreCalibre = "#12 AWG";
+                            }
+                        break;
 
                         case 3:
-                            area = 5.260;
-                            break;
+                            {
+                                area = 5.260;
+                                nombreCalibre = "#10 AWG";
+                            }
+                        break;
 
                         case 4:
-                            area = 8.367;
-                            break;
+                            {
+                                area = 8.367;
+                                nombreCalibre = "#8 AWG";
+                            }
+                        break;
 
                         case 5:
-                            area = 13.300;
-                            break;
+                            {
+                                area = 13.300;
+                                nombreCalibre = "#6 AWG";
+                            }
+                        break;
 
                         default:
-                            area = 0;
-                            break;
+                            {
+                                area = 0;
+                                nombreCalibre = "NO VALIDO";
+                            }
+                        break;
                     }
 
-                    caidaTension = (resistividad * longitud * corriente) / area;
+                Console.WriteLine();
+                Console.WriteLine($"Calibre Seleccionado: {nombreCalibre}");
+                Console.WriteLine($"Area del conductor: {area:F3}");
+
+                Console.WriteLine();
+                Console.WriteLine();
+
+                caidaTension = (resistividad * longitud * corriente) / area;
                 porcentaje = (caidaTension / voltaje) * 100;
                 Console.WriteLine();
                 Console.WriteLine("Tipo de circuito");
@@ -358,11 +386,11 @@ do
                 tipoCircuito = int.Parse(Console.ReadLine());
                 if (tipoCircuito == 1)
                 {
-                    limite = 3;
+                   limite = 3;
                 }
                 else
                 {
-                    limite = 5;
+                   limite = 5;
                 }
 
                 Console.WriteLine();
@@ -373,11 +401,100 @@ do
 
                 if (porcentaje <= limite)
                 {
-                    Console.WriteLine("Si cumple");
+                   Console.WriteLine("Si cumple");
                 }
                 else
                 {
-                    Console.WriteLine("No cumple");
+                   Console.WriteLine("No cumple");
+                   Console.WriteLine("El calibre seleccionado no es adecuado");
+                   Console.WriteLine();
+                   Console.WriteLine("Buscar un calibre mayor?");
+                   Console.WriteLine("1. si");
+                   Console.WriteLine("0. No");
+                   Console.WriteLine();
+                   Console.WriteLine("Seleccione una opcion: ");
+                   int buscarCalibre;
+                   buscarCalibre = int.Parse(Console.ReadLine());
+
+                        if (buscarCalibre == 1)
+                        {
+                            for (int i = calibre +1; i <= 5; i++)
+                            {
+                                double areaCalibreNuevo;
+                                string nombreNuevoCalibre;
+
+                                switch (i)
+                                {
+                                    case 2:
+                                        {
+                                            areaCalibreNuevo = 3.307;
+                                            nombreNuevoCalibre = "#12 AWG";
+                                        }
+                                    break;
+
+                                    case 3:
+                                        {
+                                            areaCalibreNuevo = 5.260;
+                                            nombreNuevoCalibre = "#10 AWG";
+                                        }
+                                    break;
+
+                                    case 4:
+                                        {
+                                            areaCalibreNuevo = 8.367;
+                                            nombreNuevoCalibre = "#8 AWG";
+                                        }
+                                    break;
+
+                                    case 5:
+                                        {
+                                            areaCalibreNuevo = 13.300;
+                                            nombreNuevoCalibre = "#6 AWG";
+                                        }
+                                    break;
+
+                                    default:
+                                        {
+                                            areaCalibreNuevo = 0;
+                                            nombreNuevoCalibre = "NO VALIDO";
+                                        }
+                                    break;
+                                }
+
+                                double caidaNueva;
+                                double PorcentajeNuevo;
+
+                                caidaNueva = (resistividad * longitud * corriente) / areaCalibreNuevo;
+                                PorcentajeNuevo = (caidaNueva / voltaje) * 100;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"Probando {nombreNuevoCalibre}");
+                                Console.WriteLine($"Caida de tension: {caidaNueva:F2} V");
+                                Console.WriteLine($"Porcentaje de caida: {PorcentajeNuevo:F2} %");
+
+                                if (PorcentajeNuevo <= limite)
+                                {
+                                    Console.WriteLine("CÚMPLE");
+                                    Console.WriteLine();
+                                    Console.WriteLine($"Calibre Recomendado: {nombreNuevoCalibre}");
+
+                                    encontrarCalibre = true;
+
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("NO CUMPLE");
+                                }
+
+                            }
+
+                            if (encontrarCalibre == false)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("No se encontro un calibre mayor con el limite permitido");
+                            }
+                        }
                 }
 
                 Console.WriteLine();
@@ -398,10 +515,184 @@ do
         {
                 Console.Clear();
 
-                Console.WriteLine("CONVERSION ENTRE UNIDADES");
-                Console.WriteLine();
+                int conversion;
+                int continuar;
 
-        }
+                do
+                {
+                    Console.Clear();
+
+                    Console.WriteLine("CONVERSION ENTRE UNIDADES");
+                    Console.WriteLine();
+
+                    Console.WriteLine("1. METROS A PIES");
+                    Console.WriteLine("2. PIES A METROS");
+                    Console.WriteLine("3. MILIMETROS A PULGADAS");
+                    Console.WriteLine("4. PULGADAS A MILIMETROS");
+                    Console.WriteLine("5. AMPERIOS A MILIAMPERIOS");
+                    Console.WriteLine("6. MILIAMPERIOS A AMPERIOS");
+                    Console.WriteLine("0. MENU PRINCIPAL");
+                    Console.WriteLine();
+
+                    Console.Write("Seleccione una opcion: ");
+                    conversion = int.Parse(Console.ReadLine());
+
+                    switch (conversion)
+                    {
+                        case 1:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("METROS A PIES");
+                                Console.WriteLine();
+
+                                double metros;
+                                double pies;
+
+                                Console.Write("Ingrese los metros: ");
+                                metros = double.Parse(Console.ReadLine());
+
+                                pies = metros * 3.28084;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"El resultado es: {pies:F2} pies");
+                            }
+                        break;
+
+                        case 2:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("PIES A METROS");
+                                Console.WriteLine();
+
+                                double pies;
+                                double metros;
+
+                                Console.Write("Ingrese los pies: ");
+                                pies = double.Parse(Console.ReadLine());
+
+                                metros = pies / 3.28084;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"El resultado es: {metros:F2} metros");
+                            }
+                        break;
+
+                        case 3:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("MILIMETROS A PULGADAS");
+                                Console.WriteLine();
+
+                                double milimetros;
+                                double pulgadas;
+
+                                Console.Write("Ingrese los milimetros: ");
+                                milimetros = double.Parse(Console.ReadLine());
+
+                                pulgadas = milimetros / 25.4;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"El resultado es: {pulgadas:F2} pulgadas");
+                            }
+                        break;
+
+                        case 4:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("PULGADAS A MILIMETROS");
+                                Console.WriteLine();
+
+                                double pulgadas;
+                                double milimetros;
+
+                                Console.Write("Ingrese las pulgadas: ");
+                                pulgadas = double.Parse(Console.ReadLine());
+
+                                milimetros = pulgadas * 25.4;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"El resultado es: {milimetros:F2} mm");
+                            }
+                        break;
+
+                        case 5:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("AMPERIOS A MILIAMPERIOS");
+                                Console.WriteLine();
+
+                                double amperios;
+                                double miliamperios;
+
+                                Console.Write("Ingrese los amperios: ");
+                                amperios = double.Parse(Console.ReadLine());
+
+                                miliamperios = amperios * 1000;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"El resultado es: {miliamperios:F2} mA");
+                            }
+                        break;
+
+                        case 6:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("MILIAMPERIOS A AMPERIOS");
+                                Console.WriteLine();
+
+                                double miliamperios;
+                                double amperios;
+
+                                Console.Write("Ingrese los miliamperios: ");
+                                miliamperios = double.Parse(Console.ReadLine());
+
+                                amperios = miliamperios / 1000;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"El resultado es: {amperios:F2} A");
+                            }
+                        break;
+
+                        case 0:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("REGRESANDO AL MENU PRINCIPAL...");
+                            }
+                        break;
+
+                        default:
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("OPCION INGRESADA NO VALIDA");
+                            }
+                        break;
+                    }
+
+                    if (conversion != 0)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("1. Realizar otra conversion");
+                        Console.WriteLine("0. Menu principal");
+                        Console.WriteLine();
+
+                        Console.Write("Seleccione una opcion: ");
+                        continuar = int.Parse(Console.ReadLine());
+                    }
+                    else
+                    {
+                        continuar = 0;
+                    }
+
+                } while (continuar != 0);
+
+            }
         break;
 
         case 4:
