@@ -795,7 +795,7 @@ do
 
 } while (opcion != 0);
 
-Console.WriteLine($"La opcion ({opcion}) corto el proceso y salio de la ejecucion");
+
 
 Console.ReadKey();
 Console.Clear();
