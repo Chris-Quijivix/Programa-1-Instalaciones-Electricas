@@ -699,20 +699,287 @@ do
         {
                 Console.Clear();
 
-                Console.WriteLine("CALCULO PARA CIRCUITOS MONOFASICOS");
-                Console.WriteLine();
+                int calculoMonofasico;
+                int continuar;
 
-        }
+                do
+                {
+                    Console.Clear();
+
+                    Console.WriteLine("CALCULO PARA CIRCUITOS MONOFASICOS");
+                    Console.WriteLine();
+
+                    Console.WriteLine("1. Calcular Corriente");
+                    Console.WriteLine("2. Calcular Potencia");
+                    Console.WriteLine("3. Calcular Voltaje");
+                    Console.WriteLine("0. Menu principal");
+                    Console.WriteLine();
+
+                    Console.Write("Seleccione una opcion: ");
+                    calculoMonofasico = int.Parse(Console.ReadLine());
+
+                    switch (calculoMonofasico)
+                    {
+                        case 1:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("CALCULAR CORRIENTE");
+                                Console.WriteLine();
+
+                                double potencia;
+                                double voltaje;
+                                double corriente;
+
+                                Console.Write("Ingrese la potencia: ");
+                                potencia = double.Parse(Console.ReadLine());
+
+                                Console.Write("Ingrese el voltaje: ");
+                                voltaje = double.Parse(Console.ReadLine());
+
+                                corriente = potencia / voltaje;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"La corriente es: {corriente:F2} A");
+                            }
+                            break;
+
+                        case 2:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("CALCULAR POTENCIA");
+                                Console.WriteLine();
+
+                                double voltaje;
+                                double corriente;
+                                double potencia;
+
+                                Console.Write("Ingrese el voltaje: ");
+                                voltaje = double.Parse(Console.ReadLine());
+
+                                Console.Write("Ingrese la corriente: ");
+                                corriente = double.Parse(Console.ReadLine());
+
+                                potencia = voltaje * corriente;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"La potencia es: {potencia:F2} W");
+                            }
+                            break;
+
+                        case 3:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("CALCULAR VOLTAJE");
+                                Console.WriteLine();
+
+                                double potencia;
+                                double corriente;
+                                double voltaje;
+
+                                Console.Write("Ingrese la potencia: ");
+                                potencia = double.Parse(Console.ReadLine());
+
+                                Console.Write("Ingrese la corriente: ");
+                                corriente = double.Parse(Console.ReadLine());
+
+                                voltaje = potencia / corriente;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"El voltaje es: {voltaje:F2} V");
+                            }
+                            break;
+
+                        case 0:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("REGRESANDO AL MENU PRINCIPAL...");
+                            }
+                        break;
+
+                        default:
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("OPCION INGRESADA NO VALIDA");
+                            }
+                        break;
+                    }
+
+                    if (calculoMonofasico != 0)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("1. Realizar otro calculo");
+                        Console.WriteLine("0. Menu principal");
+                        Console.WriteLine();
+
+                        Console.Write("Seleccione una opcion: ");
+                        continuar = int.Parse(Console.ReadLine());
+                    }
+                    else
+                    {
+                        continuar = 0;
+                    }
+
+                } while (continuar != 0);
+
+            }
         break;
 
         case 5:
         {
                 Console.Clear();
 
-                Console.WriteLine("cALCULO DE CIRCUITOS DERIVADOS Y ALIMENTADORES");
-                Console.WriteLine();
+                int opcionCircuito;
 
-        }
+                do
+                {
+                    Console.Clear();
+
+                    Console.WriteLine("CALCULO DE CIRCUITOS DERIVADOS Y ALIMENTADORES");
+                    Console.WriteLine();
+
+                    Console.WriteLine("1. Calcular circuito derivado");
+                    Console.WriteLine("2. Calcular alimentador");
+                    Console.WriteLine("0. Menu Principal");
+                    Console.WriteLine();
+
+                    Console.Write("Seleccione una opcion: ");
+                    opcionCircuito = int.Parse(Console.ReadLine());
+
+                    switch (opcionCircuito)
+                    {
+                        case 1:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("CALCULAR CIRCUITO DERIVADO");
+                                Console.WriteLine();
+
+                                double potencia;
+                                double voltaje;
+                                double corriente;
+                                int calibre;
+                                double ampacidad;
+                                string nombreCalibre;
+
+                                Console.Write("Ingrese la potencia de la carga: ");
+                                potencia = double.Parse(Console.ReadLine());
+
+                                Console.Write("Ingrese el voltaje del circuito: ");
+                                voltaje = double.Parse(Console.ReadLine());
+
+                                corriente = potencia / voltaje;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"La corriente de la carga es: {corriente:F2} A");
+                                Console.WriteLine();
+                                Console.WriteLine("CALIBRE DEL CONDUCTOR");
+                                Console.WriteLine("1. #14 AWG");
+                                Console.WriteLine("2. #12 AWG");
+                                Console.WriteLine("3. #10 AWG");
+                                Console.WriteLine("4. #8 AWG");
+                                Console.WriteLine("5. #6 AWG");
+                                Console.WriteLine();
+
+                                Console.Write("Seleccione un calibre: ");
+                                calibre = int.Parse(Console.ReadLine());
+
+                                switch (calibre)
+                                {
+                                    case 1:
+                                        {
+                                            ampacidad = 15;
+                                            nombreCalibre = "#14 AWG";
+                                        }
+                                        break;
+
+                                    case 2:
+                                        {
+                                            ampacidad = 20;
+                                            nombreCalibre = "#12 AWG";
+                                        }
+                                        break;
+
+                                    case 3:
+                                        {
+                                            ampacidad = 30;
+                                            nombreCalibre = "#10 AWG";
+                                        }
+                                        break;
+
+                                    case 4:
+                                        {
+                                            ampacidad = 40;
+                                            nombreCalibre = "#8 AWG";
+                                        }
+                                        break;
+
+                                    case 5:
+                                        {
+                                            ampacidad = 55;
+                                            nombreCalibre = "#6 AWG";
+                                        }
+                                        break;
+
+                                    default:
+                                        {
+                                            ampacidad = 0;
+                                            nombreCalibre = "NO VALIDO";
+                                        }
+                                        break;
+                                }
+
+                                Console.WriteLine();
+                                Console.WriteLine($"Calibre seleccionado: {nombreCalibre}");
+                                Console.WriteLine($"Ampacidad del conductor: {ampacidad:F2} A");
+                                Console.WriteLine();
+
+                                if (corriente <= ampacidad)
+                                {
+                                    Console.WriteLine("El conductor es adecuado.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("El conductor NO es adecuado.");
+                                }
+
+                                Console.WriteLine();
+                                Console.WriteLine("Presione una tecla para continuar...");
+                                Console.ReadKey();
+                            }
+                        break;
+
+                        case 2:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("CALCULAR ALIMENTADOR");
+                                Console.WriteLine();
+                            }
+                        break;
+
+                        case 0:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("REGRESANDO AL MENU PRINCIPAL...");
+                            }
+                        break;
+
+                        default:
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("OPCION INGRESADA NO VALIDA");
+                            }
+                        break;
+                    }
+
+                } while (opcionCircuito != 0);
+
+            }
         break;
 
         case 6:
