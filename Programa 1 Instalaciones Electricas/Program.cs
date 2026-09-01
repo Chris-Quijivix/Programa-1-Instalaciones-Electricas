@@ -864,6 +864,7 @@ do
                                 int calibre;
                                 double ampacidad;
                                 string nombreCalibre;
+                                string calibreRecomendado;
 
                                 Console.Write("Ingrese la potencia de la carga: ");
                                 potencia = double.Parse(Console.ReadLine());
@@ -894,42 +895,42 @@ do
                                             ampacidad = 15;
                                             nombreCalibre = "#14 AWG";
                                         }
-                                        break;
+                                    break;
 
                                     case 2:
                                         {
                                             ampacidad = 20;
                                             nombreCalibre = "#12 AWG";
                                         }
-                                        break;
+                                    break;
 
                                     case 3:
                                         {
                                             ampacidad = 30;
                                             nombreCalibre = "#10 AWG";
                                         }
-                                        break;
+                                    break;
 
                                     case 4:
                                         {
                                             ampacidad = 40;
                                             nombreCalibre = "#8 AWG";
                                         }
-                                        break;
+                                    break;
 
                                     case 5:
                                         {
                                             ampacidad = 55;
                                             nombreCalibre = "#6 AWG";
                                         }
-                                        break;
+                                    break;
 
                                     default:
                                         {
                                             ampacidad = 0;
                                             nombreCalibre = "NO VALIDO";
                                         }
-                                        break;
+                                    break;
                                 }
 
                                 Console.WriteLine();
@@ -944,6 +945,30 @@ do
                                 else
                                 {
                                     Console.WriteLine("El conductor NO es adecuado.");
+                                    Console.WriteLine();
+
+                                    if (corriente <= 20)
+                                    {
+                                        calibreRecomendado = "#12 AWG";
+                                    }
+                                    else if (corriente <= 30)
+                                    {
+                                        calibreRecomendado = "#10 AWG";
+                                    }
+                                    else if (corriente <= 40)
+                                    {
+                                        calibreRecomendado = "#8 AWG";
+                                    }
+                                    else if (corriente <= 55)
+                                    {
+                                        calibreRecomendado = "#6 AWG";
+                                    }
+                                    else
+                                    {
+                                        calibreRecomendado = "No disponible en la tabla";
+                                    }
+
+                                    Console.WriteLine($"Se recomienda utilizar: {calibreRecomendado}");
                                 }
 
                                 Console.WriteLine();
@@ -958,6 +983,109 @@ do
 
                                 Console.WriteLine("CALCULAR ALIMENTADOR");
                                 Console.WriteLine();
+
+                                double potenciaTotal;
+                                double voltaje;
+                                double corrienteAlimentador;
+
+                                Console.Write("Ingrese la potencia total de las cargas: ");
+                                potenciaTotal = double.Parse(Console.ReadLine());
+
+                                Console.Write("Ingrese el voltaje del alimentador: ");
+                                voltaje = double.Parse(Console.ReadLine());
+
+                                corrienteAlimentador = potenciaTotal / voltaje;
+
+                                Console.WriteLine();
+                                Console.WriteLine($"La corriente del alimentador es: {corrienteAlimentador:F2} A");
+                                Console.WriteLine();
+
+                                int calibre;
+                                double ampacidad;
+                                string nombreCalibre;
+
+                                Console.WriteLine("CALIBRE DEL CONDUCTOR");
+                                Console.WriteLine("1. #14 AWG");
+                                Console.WriteLine("2. #12 AWG");
+                                Console.WriteLine("3. #10 AWG");
+                                Console.WriteLine("4. #8 AWG");
+                                Console.WriteLine("5. #6 AWG");
+                                Console.WriteLine();
+
+                                Console.Write("Seleccione un calibre: ");
+                                calibre = int.Parse(Console.ReadLine());
+
+                                switch (calibre)
+                                {
+                                    case 1:
+                                        {
+                                            ampacidad = 15;
+                                            nombreCalibre = "#14 AWG";
+                                        }
+                                    break;
+
+                                    case 2:
+                                        {
+                                            ampacidad = 20;
+                                            nombreCalibre = "#12 AWG";
+                                        }
+                                    break;
+
+                                    case 3:
+                                        {
+                                            ampacidad = 30;
+                                            nombreCalibre = "#10 AWG";
+                                        }
+                                    break;
+
+                                    case 4:
+                                        {
+                                            ampacidad = 40;
+                                            nombreCalibre = "#8 AWG";
+                                        }
+                                    break;
+
+                                    case 5:
+                                        {
+                                            ampacidad = 55;
+                                            nombreCalibre = "#6 AWG";
+                                        }
+                                    break;
+
+                                    default:
+                                        {
+                                            ampacidad = 0;
+                                            nombreCalibre = "NO VALIDO";
+                                        }
+                                    break;
+                                }
+
+                                Console.WriteLine();
+                                Console.WriteLine($"Calibre seleccionado: {nombreCalibre}");
+                                Console.WriteLine($"Ampacidad del conductor: {ampacidad:F2} A");
+                                Console.WriteLine();
+
+                                if (corrienteAlimentador <= ampacidad)
+                                {
+                                    Console.WriteLine("El conductor es adecuado para el alimentador.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("El conductor NO es adecuado para el alimentador.");
+                                }
+
+                                Console.WriteLine();
+                                Console.WriteLine("1. Realizar otro calculo");
+                                Console.WriteLine("0. Menu principal");
+                                Console.WriteLine();
+
+                                Console.Write("Seleccione una opcion: ");
+                                int continuar = int.Parse(Console.ReadLine());
+
+                                if (continuar == 0)
+                                {
+                                    opcionCircuito = 0;
+                                }
                             }
                         break;
 
@@ -990,23 +1118,89 @@ do
                 Console.WriteLine();
 
                 Console.WriteLine("CALIBRE");
-                Console.WriteLine("#14");
-                Console.WriteLine("#12");
-                Console.WriteLine("#10");
-                Console.WriteLine("#8");
-                Console.WriteLine("#6");
-                Console.WriteLine("#4");
-                Console.WriteLine("#2");
-                Console.WriteLine("#1/0");
-                Console.WriteLine("#2/0");
-                Console.WriteLine("#3/0");
-                Console.WriteLine("#4/0");
+                Console.WriteLine("1. #14 AWG");
+                Console.WriteLine("2. #12 AWG");
+                Console.WriteLine("3. #10 AWG");
+                Console.WriteLine("4. #8 AWG");
+                Console.WriteLine("5. #6 AWG");
+                Console.WriteLine("6. #4 AWG");
+                Console.WriteLine("7. #2 AWG");
+                Console.WriteLine("8. #1/0 AWG");
+                Console.WriteLine("9. #2/0 AWG");
+                Console.WriteLine("10. #3/0 AWG");
+                Console.WriteLine("11. #4/0 AWG");
+                Console.WriteLine();
+
+                int calibre;
+
+                Console.Write("Seleccione el calibre que desea consultar: ");
+                calibre = int.Parse(Console.ReadLine());
+
+                double ampacidad;
+                string nombreCalibre;
+
+                switch (calibre)
+                {
+                    case 1:
+                        {
+                            ampacidad = 15;
+                            nombreCalibre = "#14 AWG";
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            ampacidad = 20;
+                            nombreCalibre = "#12 AWG";
+                        }
+                        break;
+
+                    case 3:
+                        {
+                            ampacidad = 30;
+                            nombreCalibre = "#10 AWG";
+                        }
+                        break;
+
+                    case 4:
+                        {
+                            ampacidad = 40;
+                            nombreCalibre = "#8 AWG";
+                        }
+                        break;
+
+                    case 5:
+                        {
+                            ampacidad = 55;
+                            nombreCalibre = "#6 AWG";
+                        }
+                        break;
+
+                    default:
+                        {
+                            ampacidad = 0;
+                            nombreCalibre = "NO VALIDO";
+                        }
+                        break;
+                }
+
+                if (nombreCalibre != "NO VALIDO")
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"Calibre seleccionado: {nombreCalibre}");
+                    Console.WriteLine($"Ampacidad: {ampacidad:F2} A");
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Calibre no valido.");
+                }
 
                 Console.WriteLine();
                 Console.WriteLine("Presione una tecla para volver al menu principal");
                 Console.WriteLine();
 
-            }
+        }
         break;
 
         case 7:
