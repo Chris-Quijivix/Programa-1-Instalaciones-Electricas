@@ -12,12 +12,26 @@ do
     Console.WriteLine("5. Calculo De Circuitos Derivados Y Alinmentadores");
     Console.WriteLine("6. Tabla De Calibres De Conductores");
     Console.WriteLine("7. Tabla De Area De Conductores Segun Calibre");
-    Console.WriteLine("8. Tabla De Tamaños De Tuberia Conduit");
+    Console.WriteLine("8. Tamaños de tuberia Conduit");
     Console.WriteLine("0. Salir Del Programa");
     Console.WriteLine();
 
-    Console.Write("Seleccione Una Opcion:");
-    opcion = int.Parse(Console.ReadLine());
+    do
+    {
+        Console.Write("Seleccione Una Opcion: ");
+
+        if (!int.TryParse(Console.ReadLine(), out opcion))
+        {
+            Console.WriteLine("Error: Ingrese un numero del 0 al 8.");
+            opcion = -1;
+        }
+        else if (opcion < 0 || opcion > 8)
+        {
+            Console.WriteLine("Opcion no valida. Seleccione una opcion del 0 al 8.");
+        }
+
+    } while (opcion < 0 || opcion > 8);
+
     Console.WriteLine();
 
     switch (opcion)
@@ -42,9 +56,21 @@ do
                     Console.WriteLine("0. MENU PRINCIPAL");
                     Console.WriteLine();
 
-                    Console.Write("Seleccione una opcion: ");
-                    leyOhm = int.Parse(Console.ReadLine());
-                    Console.WriteLine();
+                    do
+                    {
+                        Console.Write("Seleccione una opcion: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out leyOhm))
+                        {
+                            Console.WriteLine("Error: Ingrese un numero del 0 al 4.");
+                            leyOhm = -1;
+                        }
+                        else if (leyOhm < 0 || leyOhm > 4)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione una opcion del 0 al 4.");
+                        }
+
+                    } while (leyOhm < 0 || leyOhm > 4);
 
                     switch (leyOhm)
                     {
@@ -60,16 +86,16 @@ do
                                 double voltaje;
 
                                 Console.Write("Ingrese la corriente: ");
-                                while (!double.TryParse(Console.ReadLine(), out corriente))
+                                while (!double.TryParse(Console.ReadLine(), out corriente) || corriente < 0)
                                 {
-                                    Console.WriteLine("Error: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor igual o mayor que 0.");
                                     Console.Write("Ingrese la corriente: ");
                                 }
 
                                 Console.Write("Ingrese la resistencia: ");
-                                while (!double.TryParse(Console.ReadLine(), out resistencia))
+                                while (!double.TryParse(Console.ReadLine(), out resistencia) || resistencia < 0)
                                 {
-                                    Console.WriteLine("ERROR: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor igual o mayor que 0.");
                                     Console.Write("Ingrese la resistencia: ");
                                 }
 
@@ -82,12 +108,21 @@ do
                                 Console.WriteLine("0.Menu Principal");
                                 Console.WriteLine();
 
-                                Console.Write("Seleccione una opcion: ");
-                                continuar = int.Parse(Console.ReadLine());
-                                if (continuar == 0)
+                                do
                                 {
-                                    leyOhm = 0;
-                                }
+                                    Console.Write("Seleccione una opcion: ");
+
+                                    if (!int.TryParse(Console.ReadLine(), out continuar))
+                                    {
+                                        Console.WriteLine("Error: Ingrese 1 o 0.");
+                                        continuar = -1;
+                                    }
+                                    else if (continuar != 0 && continuar != 1)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Ingrese 1 o 0.");
+                                    }
+
+                                } while (continuar != 0 && continuar != 1);
                             }
                             break;
 
@@ -103,16 +138,16 @@ do
                                 double corriente;
 
                                 Console.Write("Ingrese el voltaje: ");
-                                while (!double.TryParse(Console.ReadLine(), out voltaje))
+                                while (!double.TryParse(Console.ReadLine(), out voltaje) || voltaje <= 0)
                                 {
-                                    Console.WriteLine("Error: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor mayor que 0.");
                                     Console.Write("Ingrese el voltaje: ");
                                 }
 
                                 Console.Write("Ingrese la resistencia: ");
-                                while (!double.TryParse(Console.ReadLine(), out resistencia))
+                                while (!double.TryParse(Console.ReadLine(), out resistencia) || resistencia <= 0)
                                 {
-                                    Console.WriteLine("Error: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor mayor que 0.");
                                     Console.Write("Ingrese la resistencia: ");
                                 }
 
@@ -133,8 +168,18 @@ do
                                 Console.WriteLine("0.Menu Principal");
                                 Console.WriteLine();
 
-                                Console.Write("Seleccione una opcion: ");
-                                continuar = int.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Seleccione una opcion: ");
+                                    continuar = int.Parse(Console.ReadLine());
+
+                                    if (continuar != 0 && continuar != 1)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Ingrese 1 o 0.");
+                                    }
+
+                                } while (continuar != 0 && continuar != 1);
+
                                 if (continuar == 0)
                                 {
                                     leyOhm = 0;
@@ -155,16 +200,16 @@ do
                                 double resistencia;
 
                                 Console.Write("Ingrese el voltaje: ");
-                                while (!double.TryParse(Console.ReadLine(), out voltaje))
+                                while (!double.TryParse(Console.ReadLine(), out voltaje) || voltaje <= 0)
                                 {
-                                    Console.WriteLine("Error: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor mayor que 0.");
                                     Console.Write("Ingrese el voltaje: ");
                                 }
 
                                 Console.Write("Ingrese la corriente: ");
-                                while (!double.TryParse(Console.ReadLine(), out corriente))
+                                while (!double.TryParse(Console.ReadLine(), out corriente) || corriente <= 0)
                                 {
-                                    Console.WriteLine("Error: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor mayor que 0.");
                                     Console.Write("Ingrese la corriente: ");
                                 }
 
@@ -180,13 +225,27 @@ do
                                     Console.WriteLine($"La resistencia es: {resistencia:F2} Ω");
                                 }
 
-                                    Console.WriteLine();
+                                Console.WriteLine();
                                 Console.WriteLine("1.Realizar otro calculo");
                                 Console.WriteLine("0.Menu Principal");
                                 Console.WriteLine();
 
-                                Console.Write("Seleccione una opcion: ");
-                                continuar = int.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Seleccione una opcion: ");
+
+                                    if (!int.TryParse(Console.ReadLine(), out continuar))
+                                    {
+                                        Console.WriteLine("Error: Ingrese 1 o 0.");
+                                        continuar = -1;
+                                    }
+                                    else if (continuar != 0 && continuar != 1)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Ingrese 1 o 0.");
+                                    }
+
+                                } while (continuar != 0 && continuar != 1);
+
                                 if (continuar == 0)
                                 {
                                     leyOhm = 0;
@@ -207,16 +266,16 @@ do
                                 double potencia;
 
                                 Console.Write("Ingrese el voltaje: ");
-                                while (!double.TryParse(Console.ReadLine(), out voltaje))
+                                while (!double.TryParse(Console.ReadLine(), out voltaje) || voltaje <= 0)
                                 {
-                                    Console.WriteLine("Error: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor mayor que 0.");
                                     Console.Write("Ingrese el voltaje: ");
                                 }
 
                                 Console.Write("Ingrese la corriente: ");
-                                while (!double.TryParse(Console.ReadLine(), out corriente))
+                                while (!double.TryParse(Console.ReadLine(), out corriente) || corriente < 0)
                                 {
-                                    Console.WriteLine("Error: Solo se permite valores numericos");
+                                    Console.WriteLine("Error: Ingrese un valor igual o mayor que 0.");
                                     Console.Write("Ingrese la corriente: ");
                                 }
 
@@ -229,14 +288,21 @@ do
                                 Console.WriteLine("0.Menu Principal");
                                 Console.WriteLine();
 
-                                Console.Write("Seleccione una opcion: ");
-                                continuar = int.Parse(Console.ReadLine());
-                                if (continuar == 0)
+                                do
                                 {
-                                    leyOhm = 0;
-                                }
+                                    Console.Write("Seleccione una opcion: ");
 
+                                    if (!int.TryParse(Console.ReadLine(), out continuar))
+                                    {
+                                        Console.WriteLine("Error: Ingrese 1 o 0.");
+                                        continuar = -1;
+                                    }
+                                    else if (continuar != 0 && continuar != 1)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Ingrese 1 o 0.");
+                                    }
 
+                                } while (continuar != 0 && continuar != 1);
                             }
                         break;
 
@@ -291,28 +357,77 @@ do
                 Console.WriteLine("1. ALUMINIO");
                 Console.WriteLine("2. COBRE");
                 Console.WriteLine();
-                Console.Write("Seleccione una opcion: ");
-                material = int.Parse(Console.ReadLine());
 
-                if(material == 1)
-                {
-                    resistividad = 0.0282;
-                }
-                else
-                {
-                    resistividad = 0.0175;
-                }
+                    do
+                    {
+                        Console.Write("Seleccione una opcion: ");
+                        material = int.Parse(Console.ReadLine());
 
-                Console.Write("Ingrese el voltaje del circuito: ");
-                voltaje = double.Parse(Console.ReadLine());
+                        if (material < 1 || material > 2)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione 1 o 2.");
+                        }
 
-                Console.Write("Ingrese la longitud de ida y vuelta en metros: ");
-                longitud = double.Parse(Console.ReadLine());
+                    } while (material < 1 || material > 2);
 
-                Console.Write("Ingrese la corriente: ");
-                corriente = double.Parse(Console.ReadLine());
+                    if (material == 1)
+                    {
+                        resistividad = 0.0282;
+                    }
+                    else
+                    {
+                        resistividad = 0.0175;
+                    }
 
-                Console.WriteLine();
+                    do
+                    {
+                        Console.Write("Ingrese el voltaje del circuito: ");
+
+                        if (!double.TryParse(Console.ReadLine(), out voltaje))
+                        {
+                            Console.WriteLine("Error: Ingrese un valor numerico.");
+                            voltaje = 0;
+                        }
+                        else if (voltaje <= 0)
+                        {
+                            Console.WriteLine("El voltaje debe ser mayor que 0.");
+                        }
+
+                    } while (voltaje <= 0);
+
+                    do
+                    {
+                        Console.Write("Ingrese la longitud de ida y vuelta en metros: ");
+
+                        if (!double.TryParse(Console.ReadLine(), out longitud))
+                        {
+                            Console.WriteLine("Error: Ingrese un valor numerico.");
+                            longitud = 0;
+                        }
+                        else if (longitud <= 0)
+                        {
+                            Console.WriteLine("La longitud debe ser mayor que 0.");
+                        }
+
+                    } while (longitud <= 0);
+
+                    do
+                    {
+                        Console.Write("Ingrese la corriente: ");
+
+                        if (!double.TryParse(Console.ReadLine(), out corriente))
+                        {
+                            Console.WriteLine("Error: Ingrese un valor numerico.");
+                            corriente = 0;
+                        }
+                        else if (corriente <= 0)
+                        {
+                            Console.WriteLine("La corriente debe ser mayor que 0.");
+                        }
+
+                    } while (corriente <= 0);
+
+                    Console.WriteLine();
                 Console.WriteLine("CALIBRE DEL CONDUCTOR");
                 Console.WriteLine("1. #14 AWG");
                 Console.WriteLine("2. #12 AWG");
@@ -321,8 +436,22 @@ do
                 Console.WriteLine("5. #6 AWG");
                 Console.WriteLine();
 
-                Console.Write("Seleccione un calibre: ");
-                calibre = int.Parse(Console.ReadLine());
+                    do
+                    {
+                        Console.Write("Seleccione un calibre: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out calibre))
+                        {
+                            Console.WriteLine("Error: Ingrese un numero del 1 al 5.");
+                            calibre = -1;
+                        }
+                        else if (calibre < 1 || calibre > 5)
+                        {
+                            Console.WriteLine("Calibre no valido. Seleccione una opcion del 1 al 5.");
+                        }
+
+                    } while (calibre < 1 || calibre > 5);
+
                     switch (calibre)
                     {
                         case 1:
@@ -377,21 +506,33 @@ do
 
                 caidaTension = (resistividad * longitud * corriente) / area;
                 porcentaje = (caidaTension / voltaje) * 100;
+
                 Console.WriteLine();
                 Console.WriteLine("Tipo de circuito");
                 Console.WriteLine("1. Circuito Derivado, Maximo 3%");
                 Console.WriteLine("2. Tablero principal a carga final, Maximo 5%");
                 Console.WriteLine();
-                Console.Write("Seleccione el tipo de circuito: ");
-                tipoCircuito = int.Parse(Console.ReadLine());
-                if (tipoCircuito == 1)
-                {
-                   limite = 3;
-                }
-                else
-                {
-                   limite = 5;
-                }
+
+                    do
+                    {
+                        Console.Write("Seleccione el tipo de circuito: ");
+                        tipoCircuito = int.Parse(Console.ReadLine());
+
+                        if (tipoCircuito < 1 || tipoCircuito > 2)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione 1 o 2.");
+                        }
+
+                    } while (tipoCircuito < 1 || tipoCircuito > 2);
+
+                    if (tipoCircuito == 1)
+                    {
+                        limite = 3;
+                    }
+                    else
+                    {
+                        limite = 5;
+                    }
 
                 Console.WriteLine();
                 Console.WriteLine($"La caida de tension es: {caidaTension:F2} V");
@@ -412,9 +553,25 @@ do
                    Console.WriteLine("1. si");
                    Console.WriteLine("0. No");
                    Console.WriteLine();
-                   Console.WriteLine("Seleccione una opcion: ");
-                   int buscarCalibre;
-                   buscarCalibre = int.Parse(Console.ReadLine());
+                   Console.Write("Seleccione una opcion: ");
+
+                        int buscarCalibre;
+
+                        do
+                        {
+                            Console.Write("Seleccione una opcion: ");
+
+                            if (!int.TryParse(Console.ReadLine(), out buscarCalibre))
+                            {
+                                Console.WriteLine("Error: Ingrese 1 o 0.");
+                                buscarCalibre = -1;
+                            }
+                            else if (buscarCalibre != 0 && buscarCalibre != 1)
+                            {
+                                Console.WriteLine("Opcion no valida. Seleccione 1 o 0.");
+                            }
+
+                        } while (buscarCalibre != 0 && buscarCalibre != 1);
 
                         if (buscarCalibre == 1)
                         {
@@ -502,11 +659,24 @@ do
                 Console.WriteLine("0. Menu principal");
                 Console.WriteLine();
 
-                Console.Write("Seleccione una opcion: ");
-                continuar = int.Parse(Console.ReadLine());
+                    do
+                    {
+                        Console.Write("Seleccione una opcion: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out continuar))
+                        {
+                            Console.WriteLine("Error: Ingrese 1 o 0.");
+                            continuar = -1;
+                        }
+                        else if (continuar != 0 && continuar != 1)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione 1 o 0.");
+                        }
+
+                    } while (continuar != 0 && continuar != 1);
 
 
-             }while (continuar != 0);
+                } while (continuar != 0);
 
         }
         break;
@@ -534,8 +704,21 @@ do
                     Console.WriteLine("0. MENU PRINCIPAL");
                     Console.WriteLine();
 
-                    Console.Write("Seleccione una opcion: ");
-                    conversion = int.Parse(Console.ReadLine());
+                    do
+                    {
+                        Console.Write("Seleccione una opcion: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out conversion))
+                        {
+                            Console.WriteLine("Error: Ingrese un numero del 0 al 6.");
+                            conversion = -1;
+                        }
+                        else if (conversion < 0 || conversion > 6)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione una opcion del 0 al 6.");
+                        }
+
+                    } while (conversion < 0 || conversion > 6);
 
                     switch (conversion)
                     {
@@ -549,8 +732,21 @@ do
                                 double metros;
                                 double pies;
 
-                                Console.Write("Ingrese los metros: ");
-                                metros = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese los metros: ");
+
+                                    if (!double.TryParse(Console.ReadLine(), out metros))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un valor numerico.");
+                                        metros = -1;
+                                    }
+                                    else if (metros < 0)
+                                    {
+                                        Console.WriteLine("El valor no puede ser negativo.");
+                                    }
+
+                                } while (metros < 0);
 
                                 pies = metros * 3.28084;
 
@@ -569,8 +765,21 @@ do
                                 double pies;
                                 double metros;
 
-                                Console.Write("Ingrese los pies: ");
-                                pies = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese los pies: ");
+
+                                    if (!double.TryParse(Console.ReadLine(), out pies))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un valor numerico.");
+                                        pies = -1;
+                                    }
+                                    else if (pies < 0)
+                                    {
+                                        Console.WriteLine("El valor no puede ser negativo.");
+                                    }
+
+                                } while (pies < 0);
 
                                 metros = pies / 3.28084;
 
@@ -589,8 +798,21 @@ do
                                 double milimetros;
                                 double pulgadas;
 
-                                Console.Write("Ingrese los milimetros: ");
-                                milimetros = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese los milimetros: ");
+
+                                    if (!double.TryParse(Console.ReadLine(), out milimetros))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un valor numerico.");
+                                        milimetros = -1;
+                                    }
+                                    else if (milimetros < 0)
+                                    {
+                                        Console.WriteLine("El valor no puede ser negativo.");
+                                    }
+
+                                } while (milimetros < 0);
 
                                 pulgadas = milimetros / 25.4;
 
@@ -609,8 +831,21 @@ do
                                 double pulgadas;
                                 double milimetros;
 
-                                Console.Write("Ingrese las pulgadas: ");
-                                pulgadas = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese las pulgadas: ");
+
+                                    if (!double.TryParse(Console.ReadLine(), out pulgadas))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un valor numerico.");
+                                        pulgadas = -1;
+                                    }
+                                    else if (pulgadas < 0)
+                                    {
+                                        Console.WriteLine("El valor no puede ser negativo.");
+                                    }
+
+                                } while (pulgadas < 0);
 
                                 milimetros = pulgadas * 25.4;
 
@@ -629,8 +864,21 @@ do
                                 double amperios;
                                 double miliamperios;
 
-                                Console.Write("Ingrese los amperios: ");
-                                amperios = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese los amperios: ");
+
+                                    if (!double.TryParse(Console.ReadLine(), out amperios))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un valor numerico.");
+                                        amperios = -1;
+                                    }
+                                    else if (amperios < 0)
+                                    {
+                                        Console.WriteLine("El valor no puede ser negativo.");
+                                    }
+
+                                } while (amperios < 0);
 
                                 miliamperios = amperios * 1000;
 
@@ -649,8 +897,21 @@ do
                                 double miliamperios;
                                 double amperios;
 
-                                Console.Write("Ingrese los miliamperios: ");
-                                miliamperios = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese los miliamperios: ");
+
+                                    if (!double.TryParse(Console.ReadLine(), out miliamperios))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un valor numerico.");
+                                        miliamperios = -1;
+                                    }
+                                    else if (miliamperios < 0)
+                                    {
+                                        Console.WriteLine("El valor no puede ser negativo.");
+                                    }
+
+                                } while (miliamperios < 0);
 
                                 amperios = miliamperios / 1000;
 
@@ -682,8 +943,17 @@ do
                         Console.WriteLine("0. Menu principal");
                         Console.WriteLine();
 
-                        Console.Write("Seleccione una opcion: ");
-                        continuar = int.Parse(Console.ReadLine());
+                        do
+                        {
+                            Console.Write("Seleccione una opcion: ");
+                            continuar = int.Parse(Console.ReadLine());
+
+                            if (continuar != 0 && continuar != 1)
+                            {
+                                Console.WriteLine("Opcion no valida. Seleccione 1 o 0.");
+                            }
+
+                        } while (continuar != 0 && continuar != 1);
                     }
                     else
                     {
@@ -715,8 +985,21 @@ do
                     Console.WriteLine("0. Menu principal");
                     Console.WriteLine();
 
-                    Console.Write("Seleccione una opcion: ");
-                    calculoMonofasico = int.Parse(Console.ReadLine());
+                    do
+                    {
+                        Console.Write("Seleccione una opcion: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out calculoMonofasico))
+                        {
+                            Console.WriteLine("Error: Ingrese un numero del 0 al 3.");
+                            calculoMonofasico = -1;
+                        }
+                        else if (calculoMonofasico < 0 || calculoMonofasico > 3)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione una opcion del 0 al 3.");
+                        }
+
+                    } while (calculoMonofasico < 0 || calculoMonofasico > 3);
 
                     switch (calculoMonofasico)
                     {
@@ -731,11 +1014,29 @@ do
                                 double voltaje;
                                 double corriente;
 
-                                Console.Write("Ingrese la potencia: ");
-                                potencia = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese la potencia: ");
+                                    potencia = double.Parse(Console.ReadLine());
 
-                                Console.Write("Ingrese el voltaje: ");
-                                voltaje = double.Parse(Console.ReadLine());
+                                    if (potencia < 0)
+                                    {
+                                        Console.WriteLine("La potencia no puede ser negativa.");
+                                    }
+
+                                } while (potencia < 0);
+
+                                do
+                                {
+                                    Console.Write("Ingrese el voltaje: ");
+                                    voltaje = double.Parse(Console.ReadLine());
+
+                                    if (voltaje <= 0)
+                                    {
+                                        Console.WriteLine("El voltaje debe ser mayor que 0.");
+                                    }
+
+                                } while (voltaje <= 0);
 
                                 corriente = potencia / voltaje;
 
@@ -755,11 +1056,29 @@ do
                                 double corriente;
                                 double potencia;
 
-                                Console.Write("Ingrese el voltaje: ");
-                                voltaje = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese el voltaje: ");
+                                    voltaje = double.Parse(Console.ReadLine());
 
-                                Console.Write("Ingrese la corriente: ");
-                                corriente = double.Parse(Console.ReadLine());
+                                    if (voltaje <= 0)
+                                    {
+                                        Console.WriteLine("El voltaje debe ser mayor que 0.");
+                                    }
+
+                                } while (voltaje <= 0);
+
+                                do
+                                {
+                                    Console.Write("Ingrese la corriente: ");
+                                    corriente = double.Parse(Console.ReadLine());
+
+                                    if (corriente < 0)
+                                    {
+                                        Console.WriteLine("La corriente no puede ser negativa.");
+                                    }
+
+                                } while (corriente < 0);
 
                                 potencia = voltaje * corriente;
 
@@ -779,11 +1098,29 @@ do
                                 double corriente;
                                 double voltaje;
 
-                                Console.Write("Ingrese la potencia: ");
-                                potencia = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese la potencia: ");
+                                    potencia = double.Parse(Console.ReadLine());
 
-                                Console.Write("Ingrese la corriente: ");
-                                corriente = double.Parse(Console.ReadLine());
+                                    if (potencia < 0)
+                                    {
+                                        Console.WriteLine("La potencia no puede ser negativa.");
+                                    }
+
+                                } while (potencia < 0);
+
+                                do
+                                {
+                                    Console.Write("Ingrese la corriente: ");
+                                    corriente = double.Parse(Console.ReadLine());
+
+                                    if (corriente <= 0)
+                                    {
+                                        Console.WriteLine("La corriente debe ser mayor que 0.");
+                                    }
+
+                                } while (corriente <= 0);
 
                                 voltaje = potencia / corriente;
 
@@ -815,8 +1152,17 @@ do
                         Console.WriteLine("0. Menu principal");
                         Console.WriteLine();
 
-                        Console.Write("Seleccione una opcion: ");
-                        continuar = int.Parse(Console.ReadLine());
+                        do
+                        {
+                            Console.Write("Seleccione una opcion: ");
+                            continuar = int.Parse(Console.ReadLine());
+
+                            if (continuar != 0 && continuar != 1)
+                            {
+                                Console.WriteLine("Opcion no valida. Seleccione 1 o 0.");
+                            }
+
+                        } while (continuar != 0 && continuar != 1);
                     }
                     else
                     {
@@ -846,8 +1192,21 @@ do
                     Console.WriteLine("0. Menu Principal");
                     Console.WriteLine();
 
-                    Console.Write("Seleccione una opcion: ");
-                    opcionCircuito = int.Parse(Console.ReadLine());
+                    do
+                    {
+                        Console.Write("Seleccione una opcion: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out opcionCircuito))
+                        {
+                            Console.WriteLine("Error: Ingrese un numero del 0 al 2.");
+                            opcionCircuito = -1;
+                        }
+                        else if (opcionCircuito < 0 || opcionCircuito > 2)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione una opcion del 0 al 2.");
+                        }
+
+                    } while (opcionCircuito < 0 || opcionCircuito > 2);
 
                     switch (opcionCircuito)
                     {
@@ -866,11 +1225,29 @@ do
                                 string nombreCalibre;
                                 string calibreRecomendado;
 
-                                Console.Write("Ingrese la potencia de la carga: ");
-                                potencia = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese la potencia de la carga: ");
+                                    potencia = double.Parse(Console.ReadLine());
 
-                                Console.Write("Ingrese el voltaje del circuito: ");
-                                voltaje = double.Parse(Console.ReadLine());
+                                    if (potencia < 0)
+                                    {
+                                        Console.WriteLine("La potencia no puede ser negativa.");
+                                    }
+
+                                } while (potencia < 0);
+
+                                do
+                                {
+                                    Console.Write("Ingrese el voltaje: ");
+                                    voltaje = double.Parse(Console.ReadLine());
+
+                                    if (voltaje <= 0)
+                                    {
+                                        Console.WriteLine("El voltaje debe ser mayor que 0.");
+                                    }
+
+                                } while (voltaje <= 0);
 
                                 corriente = potencia / voltaje;
 
@@ -885,8 +1262,21 @@ do
                                 Console.WriteLine("5. #6 AWG");
                                 Console.WriteLine();
 
-                                Console.Write("Seleccione un calibre: ");
-                                calibre = int.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Seleccione un calibre: ");
+
+                                    if (!int.TryParse(Console.ReadLine(), out calibre))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un numero del 1 al 5.");
+                                        calibre = -1;
+                                    }
+                                    else if (calibre < 1 || calibre > 5)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Seleccione un calibre del 1 al 5.");
+                                    }
+
+                                } while (calibre < 1 || calibre > 5);
 
                                 switch (calibre)
                                 {
@@ -988,11 +1378,29 @@ do
                                 double voltaje;
                                 double corrienteAlimentador;
 
-                                Console.Write("Ingrese la potencia total de las cargas: ");
-                                potenciaTotal = double.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Ingrese la potencia total de las cargas: ");
+                                    potenciaTotal = double.Parse(Console.ReadLine());
 
-                                Console.Write("Ingrese el voltaje del alimentador: ");
-                                voltaje = double.Parse(Console.ReadLine());
+                                    if (potenciaTotal < 0)
+                                    {
+                                        Console.WriteLine("La potencia no puede ser negativa.");
+                                    }
+
+                                } while (potenciaTotal < 0);
+
+                                do
+                                {
+                                    Console.Write("Ingrese el voltaje del alimentador: ");
+                                    voltaje = double.Parse(Console.ReadLine());
+
+                                    if (voltaje <= 0)
+                                    {
+                                        Console.WriteLine("El voltaje debe ser mayor que 0.");
+                                    }
+
+                                } while (voltaje <= 0);
 
                                 corrienteAlimentador = potenciaTotal / voltaje;
 
@@ -1012,8 +1420,21 @@ do
                                 Console.WriteLine("5. #6 AWG");
                                 Console.WriteLine();
 
-                                Console.Write("Seleccione un calibre: ");
-                                calibre = int.Parse(Console.ReadLine());
+                                do
+                                {
+                                    Console.Write("Seleccione un calibre: ");
+
+                                    if (!int.TryParse(Console.ReadLine(), out calibre))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un numero del 1 al 5.");
+                                        calibre = -1;
+                                    }
+                                    else if (calibre < 1 || calibre > 5)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Seleccione un calibre del 1 al 5.");
+                                    }
+
+                                } while (calibre < 1 || calibre > 5);
 
                                 switch (calibre)
                                 {
@@ -1079,8 +1500,19 @@ do
                                 Console.WriteLine("0. Menu principal");
                                 Console.WriteLine();
 
-                                Console.Write("Seleccione una opcion: ");
-                                int continuar = int.Parse(Console.ReadLine());
+                                int continuar;
+
+                                do
+                                {
+                                    Console.Write("Seleccione una opcion: ");
+                                    continuar = int.Parse(Console.ReadLine());
+
+                                    if (continuar != 0 && continuar != 1)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Seleccione 1 o 0.");
+                                    }
+
+                                } while (continuar != 0 && continuar != 1);
 
                                 if (continuar == 0)
                                 {
@@ -1133,8 +1565,21 @@ do
 
                 int calibre;
 
-                Console.Write("Seleccione el calibre que desea consultar: ");
-                calibre = int.Parse(Console.ReadLine());
+                do
+                {
+                    Console.Write("Seleccione el calibre que desea consultar: ");
+
+                    if (!int.TryParse(Console.ReadLine(), out calibre))
+                    {
+                        Console.WriteLine("Error: Ingrese un numero del 1 al 11.");
+                        calibre = -1;
+                    }
+                    else if (calibre < 1 || calibre > 11)
+                    {
+                        Console.WriteLine("Opcion no valida. Seleccione un calibre del 1 al 11.");
+                    }
+
+                } while (calibre < 1 || calibre > 11);
 
                 double ampacidad;
                 string nombreCalibre;
@@ -1146,49 +1591,97 @@ do
                             ampacidad = 15;
                             nombreCalibre = "#14 AWG";
                         }
-                        break;
+                    break;
 
                     case 2:
                         {
                             ampacidad = 20;
                             nombreCalibre = "#12 AWG";
                         }
-                        break;
+                    break;
 
                     case 3:
                         {
                             ampacidad = 30;
                             nombreCalibre = "#10 AWG";
                         }
-                        break;
+                    break;
 
                     case 4:
                         {
                             ampacidad = 40;
                             nombreCalibre = "#8 AWG";
                         }
-                        break;
+                    break;
 
                     case 5:
                         {
                             ampacidad = 55;
                             nombreCalibre = "#6 AWG";
                         }
-                        break;
+                    break;
+
+                    case 6:
+                        {
+                            ampacidad = 0;
+                            nombreCalibre = "#4 AWG";
+                        }
+                    break;
+
+                    case 7:
+                        {
+                            ampacidad = 0;
+                            nombreCalibre = "#2 AWG";
+                        }
+                    break;
+
+                    case 8:
+                        {
+                            ampacidad = 0;
+                            nombreCalibre = "#1/0 AWG";
+                        }
+                    break;
+
+                    case 9:
+                        {
+                            ampacidad = 0;
+                            nombreCalibre = "#2/0 AWG";
+                        }
+                    break;
+
+                    case 10:
+                        {
+                            ampacidad = 0;
+                            nombreCalibre = "#3/0 AWG";
+                        }
+                    break;
+
+                    case 11:
+                        {
+                            ampacidad = 0;
+                            nombreCalibre = "#4/0 AWG";
+                        }
+                    break;
 
                     default:
                         {
                             ampacidad = 0;
                             nombreCalibre = "NO VALIDO";
                         }
-                        break;
+                    break;
                 }
 
-                if (nombreCalibre != "NO VALIDO")
+                if (calibre >= 1 && calibre <= 5)
                 {
                     Console.WriteLine();
                     Console.WriteLine($"Calibre seleccionado: {nombreCalibre}");
                     Console.WriteLine($"Ampacidad: {ampacidad:F2} A");
+                }
+                else if (calibre >= 6 && calibre <= 11)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"Calibre seleccionado: {nombreCalibre}");
+                    Console.WriteLine("Ampacidad: No disponible en la tabla.");
                 }
                 else
                 {
@@ -1198,7 +1691,7 @@ do
 
                 Console.WriteLine();
                 Console.WriteLine("Presione una tecla para volver al menu principal");
-                Console.WriteLine();
+                Console.ReadKey();
 
         }
         break;
@@ -1210,6 +1703,7 @@ do
                 Console.WriteLine("TABLA DE AREA DE CONDUCTORES SEGUN CALIBRE");
                 Console.WriteLine();
 
+                Console.WriteLine("Area del conductor sin aislamiento");
                 Console.WriteLine("CALIBRE         AREA mm²");
                 Console.WriteLine("#14 AWG         2.082");
                 Console.WriteLine("#12 AWG         3.307");
@@ -1228,10 +1722,299 @@ do
         {
                 Console.Clear();
 
-                Console.WriteLine("TABLA DE TAMAÑOS DE TUBERIA CONDUIT");
-                Console.WriteLine();
+                int opcionTuberia;
 
-        }
+                do
+                {
+                    Console.Clear();
+
+                    Console.WriteLine("TAMAÑOS DE TUBERIA CONDUIT");
+                    Console.WriteLine();
+
+                    Console.WriteLine("1. Calcular factor de relleno");
+                    Console.WriteLine("2. Consultar tamaños de tuberia");
+                    Console.WriteLine("0. Menu Principal");
+                    Console.WriteLine();
+
+                    do
+                    {
+                        Console.Write("Seleccione una opcion: ");
+
+                        if (!int.TryParse(Console.ReadLine(), out opcionTuberia))
+                        {
+                            Console.WriteLine("Error: Ingrese un numero del 0 al 2.");
+                            opcionTuberia = -1;
+                        }
+                        else if (opcionTuberia < 0 || opcionTuberia > 2)
+                        {
+                            Console.WriteLine("Opcion no valida. Seleccione una opcion del 0 al 2.");
+                        }
+
+                    } while (opcionTuberia < 0 || opcionTuberia > 2);
+
+                    switch (opcionTuberia)
+                    {
+                        case 1:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("CALCULAR FACTOR DE RELLENO");
+                                Console.WriteLine();
+
+                                int cantidadConductores;
+                                double areaConductor;
+                                double areaTotalConductores;
+                                double areaTuberia;
+                                double factorRelleno;
+                                double limiteRelleno;
+
+                                do
+                                {
+                                    Console.Write("Ingrese la cantidad de conductores: ");
+
+                                    if (!int.TryParse(Console.ReadLine(), out cantidadConductores))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un numero entero mayor que 0.");
+                                        cantidadConductores = 0;
+                                    }
+                                    else if (cantidadConductores <= 0)
+                                    {
+                                        Console.WriteLine("La cantidad debe ser mayor que 0.");
+                                    }
+
+                                } while (cantidadConductores <= 0);
+
+                                areaTotalConductores = 0;
+
+                                for (int i = 1; i <= cantidadConductores; i++)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine($"CONDUCTOR {i}");
+                                    Console.WriteLine("1. #14 AWG");
+                                    Console.WriteLine("2. #12 AWG");
+                                    Console.WriteLine("3. #10 AWG");
+                                    Console.WriteLine("4. #8 AWG");
+                                    Console.WriteLine("5. #6 AWG");
+
+                                    int calibre;
+                                    bool calibreValido;
+
+                                    do
+                                    {
+                                        Console.Write("Seleccione el calibre: ");
+
+                                        if (!int.TryParse(Console.ReadLine(), out calibre))
+                                        {
+                                            Console.WriteLine("Error: Ingrese un numero del 1 al 5.");
+                                            calibreValido = false;
+                                        }
+                                        else
+                                        {
+                                            calibreValido = calibre >= 1 && calibre <= 5;
+
+                                            if (!calibreValido)
+                                            {
+                                                Console.WriteLine("Calibre no valido. Seleccione una opcion del 1 al 5.");
+                                            }
+                                        }
+
+                                    } while (!calibreValido);
+
+                                    switch (calibre)
+                                    {
+                                        case 1:
+                                            {
+                                                areaConductor = 9.24;
+                                            }
+                                        break;
+
+                                        case 2:
+                                            {
+                                                areaConductor = 12.0;
+                                            }
+                                        break;
+
+                                        case 3:
+                                            {
+                                                areaConductor = 16.1;
+                                            }
+                                        break;
+
+                                        case 4:
+                                            {
+                                                areaConductor = 29.2;
+                                            }
+                                        break;
+
+                                        case 5:
+                                            {
+                                                areaConductor = 48.0;
+                                            }
+                                        break;
+
+                                        default:
+                                            {
+                                                areaConductor = 0;
+                                                calibreValido = false;
+                                            }
+                                        break;
+                                    }
+
+                                    if (!calibreValido)
+                                    {
+                                        Console.WriteLine("Calibre no valido.");
+                                    }
+                                    else
+                                    {
+                                        areaTotalConductores = areaTotalConductores + areaConductor;
+                                    }
+
+                                }
+
+
+                                Console.WriteLine();
+                                Console.WriteLine("TAMAÑO DE TUBERIA CONDUIT");
+                                Console.WriteLine("1. 1/2\"");
+                                Console.WriteLine("2. 3/4\"");
+                                Console.WriteLine("3. 1\"");
+                                Console.WriteLine("4. 1 1/4\"");
+                                Console.WriteLine("5. 1 1/2\"");
+                                Console.WriteLine();
+
+                                int tamañoTuberia;
+
+                                do
+                                {
+                                    Console.Write("Seleccione el tamaño de la tuberia: ");
+
+                                    if (!int.TryParse(Console.ReadLine(), out tamañoTuberia))
+                                    {
+                                        Console.WriteLine("Error: Ingrese un numero del 1 al 5.");
+                                        tamañoTuberia = -1;
+                                    }
+                                    else if (tamañoTuberia < 1 || tamañoTuberia > 5)
+                                    {
+                                        Console.WriteLine("Opcion no valida. Seleccione un tamaño del 1 al 5.");
+                                    }
+
+                                } while (tamañoTuberia < 1 || tamañoTuberia > 5);
+
+                                switch (tamañoTuberia)
+                                {
+                                    case 1:
+                                        {
+                                            areaTuberia = 260;
+                                        }
+                                    break;
+
+                                    case 2:
+                                        {
+                                            areaTuberia = 438;
+                                        }
+                                    break;
+
+                                    case 3:
+                                        {
+                                            areaTuberia = 723;
+                                        }
+                                    break;
+
+                                    case 4:
+                                        {
+                                            areaTuberia = 1170;
+                                        }
+                                    break;
+
+                                    case 5:
+                                        {
+                                            areaTuberia = 1534;
+                                        }
+                                    break;
+
+                                    default:
+                                        {
+                                            areaTuberia = 0;
+                                        }
+                                    break;
+                                }
+
+                                Console.WriteLine();
+                                Console.WriteLine($"Area total de los conductores: {areaTotalConductores:F3} mm²");
+
+                                if (areaTuberia == 0)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine("Tamaño de tuberia no valido.");
+                                }
+                                else
+                                {
+                                    factorRelleno = (areaTotalConductores / areaTuberia) * 100;
+
+                                    Console.WriteLine($"Area de la tuberia: {areaTuberia:F3} mm²");
+                                    Console.WriteLine($"Factor de relleno: {factorRelleno:F2} %");
+
+                                    limiteRelleno = 40;
+
+                                    Console.WriteLine($"Limite de relleno permitido: {limiteRelleno:F2} %");
+
+                                    if (factorRelleno <= limiteRelleno)
+                                    {
+                                        Console.WriteLine("CUMPLE: La tuberia es adecuada.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("NO CUMPLE: La tuberia es insuficiente.");
+                                    }
+                                }
+
+                                Console.WriteLine();
+                                Console.WriteLine("Presione una tecla para continuar...");
+                                Console.ReadKey();
+                            }
+                        break;
+
+                        case 2:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("TAMAÑOS DE TUBERIA CONDUIT");
+                                Console.WriteLine();
+
+                                Console.WriteLine("TAMAÑO       AREA INTERNA");
+                                Console.WriteLine("1/2\"         260 mm²");
+                                Console.WriteLine("3/4\"         438 mm²");
+                                Console.WriteLine("1\"           723 mm²");
+                                Console.WriteLine("1 1/4\"       1170 mm²");
+                                Console.WriteLine("1 1/2\"       1534 mm²");
+
+                                Console.WriteLine();
+                                Console.WriteLine("Presione una tecla para continuar...");
+                                Console.ReadKey();
+                            }
+                        break;
+
+                        case 0:
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine("REGRESANDO AL MENU PRINCIPAL...");
+                            }
+                        break;
+
+                        default:
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("OPCION INGRESADA NO VALIDA");
+                                Console.WriteLine();
+                                Console.WriteLine("Presione una tecla para continuar...");
+                                Console.ReadKey();
+                            }
+                        break;
+                    }
+
+                } while (opcionTuberia != 0);
+
+        }        
         break;
 
         case 0:
